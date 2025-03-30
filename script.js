@@ -42,8 +42,7 @@ function spawnFlowers() {
     const allFlowers = ["chamomile", "tulip", "sunflower"];
     const allCurrFlowers = [];
     for (let flower = 0; flower < amountOfFlowers; flower++) {
-        currentFlower =
-            allFlowers[Math.trunc(Math.random() * allFlowers.length)];
+        const currentFlower = llFlowers[Math.trunc(Math.random() * allFlowers.length)];
         if (currentFlower == "chamomile") {
             const chamomile = document.createElement("div");
             chamomile.className = "chamomile";
