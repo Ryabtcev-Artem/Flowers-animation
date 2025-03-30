@@ -1,0 +1,266 @@
+*{
+  user-select: none;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+  flex-direction: column;
+  background-color: green;
+}
+button{
+  scale: 1.6;
+}
+.fieldCell {
+  width: 100px;
+  height: 100px;
+  background-color: #aad751;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrap{
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #e5c29f;
+  color: blue;
+  font-size: 90px;
+  font-family: sans-serif;
+  justify-content: center;
+}
+/*ЦВЕТОЧКИ*/
+.flowers-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/*РОМАШКА*/
+.chamomile {
+  scale: 0.5;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform: scale(0);
+  animation: flower-appear 0.8s cubic-bezier(0.2, 0.7, 0.4, 1.5) forwards;
+}
+
+.chamomile-center {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  background: #FFD700;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: center-appear 0.6s 0.3s ease-out forwards;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.chamomile-petal {
+  position: absolute;
+  width: 25px;
+  height: 10px;
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  transform-origin: left center;
+  transform: 
+    translate(0, -50%)
+    rotate(calc(var(--i) * 30deg)) 
+    translateX(10px)
+    scaleX(0);
+  animation: 
+    petal-stretch 0.4s calc(var(--i) * 0.05s) ease-out forwards,
+    petal-fade 0.3s ease-out forwards;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+@keyframes flower-appear {
+  0% { transform: scale(0) rotate(-30deg); }
+  80% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes center-appear {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  70% { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes petal-stretch {
+  0% { transform: translate(0, -50%) rotate(calc(var(--i) * 30deg)) translateX(0) scaleX(0); }
+  100% { transform: translate(0, -50%) rotate(calc(var(--i) * 30deg)) translateX(10px) scaleX(1); }
+}
+
+@keyframes petal-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/*ТЮЛЬПАН*/
+.tulip {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  scale: 0.5;
+}
+
+.tulipPetal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 60% 40% 50% 50%;
+  clip-path: path('M40 0 C 50 25, 55 50, 40 65 C 25 50, 30 25, 40 0');
+  transform: rotate(calc(var(--i) * 120deg)) scale(0);
+  transform-origin: center;
+  opacity: 0;
+  animation: 
+    petal-bloom 0.8s cubic-bezier(0.7, 0.1, 0.3, 1.8) calc(var(--i) * 0.15s) forwards,
+    petal-float .3s ease-in-out calc(var(--i) * 0.1s);
+  filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
+}
+
+.tulip-core {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #ffd700 0%, #ffaa00 100%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: core-pop 0.6s 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) forwards;
+  box-shadow: 0 0 10px rgba(255, 200, 0, 0.8);
+  z-index: 2;
+}
+
+@keyframes petal-bloom {
+  0% { transform: rotate(calc(var(--i) * 120deg)) scale(0) rotate(10deg); opacity: 0; }
+  70% { transform: rotate(calc(var(--i) * 120deg)) scale(1.1) rotate(-5deg); opacity: 1; }
+  100% { transform: rotate(calc(var(--i) * 120deg)) scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes core-pop {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  70% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes petal-float {
+  0%, 100% { transform: rotate(calc(var(--i) * 120deg)) translateY(0); }
+  50% { transform: rotate(calc(var(--i) * 120deg)) translateY(-5px); }
+}
+/*ПОДСОЛНУХ*/
+.sunflower {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bloom 1.5s ease-in-out;
+}
+
+/* Лепестки */
+.petals {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.petal {
+  position: absolute;
+  width: 35%;
+  height: 50%;
+  border-radius: 50%;
+  top: 0%;
+  left: 32%;
+  transform-origin: bottom center;
+  transform: rotate(calc(var(--i) * 30deg)) scale(0);
+  opacity: 0;
+  animation: petalAppear 1s ease-out forwards calc(var(--i) * 0.05s);
+}
+
+/* Сердцевина */
+.center {
+  width: 40%;
+  height: 40%;
+  background-color: #5a3d1c;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: centerAppear 1.2s ease-in-out forwards;
+}
+
+/* Семечки */
+.seed {
+  width: 15%;
+  height: 20%;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  animation: seedAppear 1s ease-in-out forwards 1s;
+}
+
+.seed1 { top: 20%; left: 30%; transform: rotate(20deg); }
+.seed2 { top: 50%; left: 60%; transform: rotate(-10deg); }
+.seed3 { top: 70%; left: 40%; transform: rotate(15deg); }
+
+/* Анимация появления цветка */
+@keyframes bloom {
+  from {
+      transform: scale(0);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Анимация раскрытия лепестков */
+@keyframes petalAppear {
+  0% {
+      opacity: 0;
+      transform: scale(0) rotate(calc(var(--i) * 30deg));
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1) rotate(calc(var(--i) * 30deg));
+  }
+}
+
+/* Анимация появления сердцевины */
+@keyframes centerAppear {
+  from {
+      transform: scale(0);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Анимация появления семечек */
+@keyframes seedAppear {
+  from {
+      transform: scale(0);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
