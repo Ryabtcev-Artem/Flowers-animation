@@ -47,6 +47,18 @@ function spawnFlowers() {
         if (currentFlower == "chamomile") {
             const chamomile = document.createElement("div");
             chamomile.className = "chamomile";
+            if (flower==0){
+                chamomile.style.left = '0'
+                chamomile.style.top = '0'
+            }
+            if (flower==1){
+                chamomile.style.right = '0'
+                chamomile.style.top = '0'
+            }
+            if (flower==2){
+                chamomile.style.right = '0'
+                chamomile.style.bottom = '0'
+            }
             const chamomileCenter = document.createElement("div");
             chamomileCenter.className = "chamomile-center";
             chamomile.appendChild(chamomileCenter);
@@ -61,19 +73,31 @@ function spawnFlowers() {
             allCurrFlowers.push(chamomile);
             flowersContainer.appendChild(chamomile);
         }
-        if (currentFlower == "tulip") {
+        else if (currentFlower == "tulip") {
             const tulip = document.createElement("div");
             tulip.className = "tulip";
+            if (flower==0){
+                tulip.style.left = '-5%'
+                tulip.style.top = '-5%'
+            }
+            if (flower==1){
+                tulip.style.right = '-5%'
+                tulip.style.top = '-5%'
+            }
+            if (flower==2){
+                tulip.style.right = '-5%'
+                tulip.style.bottom = '-5%'
+            }
             const randPetalColor = flowerPetalColors[Math.floor(flowerPetalColors.length*Math.random())]
             for (let petalCount = 0; petalCount < 3; petalCount++) {
                 const petal = document.createElement("div");
                 petal.className = "tulipPetal";
                 if (petalCount == 0) {
-                    petal.style = "--i:0; --color1:#ff4d6d; --color2:#ff8fa3";
+                    petal.style = "--i:0";
                 } else if (petalCount == 1) {
-                    petal.style = "--i:1; --color1:#ff758f; --color2:#ffb3c1";
+                    petal.style = "--i:1";
                 } else if (petalCount == 2) {
-                    petal.style = "--i:2; --color1:#ff8fa3; --color2:#ffccd5";
+                    petal.style = "--i:2";
                 }
                 tulip.appendChild(petal);
                 petal.style.background = randPetalColor
@@ -84,9 +108,21 @@ function spawnFlowers() {
             allCurrFlowers.push(tulip);
             flowersContainer.appendChild(tulip);
         }
-        if (currentFlower == "sunflower") {
+        else if (currentFlower == "sunflower") {
             const sunflower = document.createElement("div");
             sunflower.className = "sunflower";
+            if (flower==0){
+                sunflower.style.left = '10%'
+                sunflower.style.top = '10%'
+            }
+            else if (flower==1){
+                sunflower.style.right = '10%'
+                sunflower.style.top = '10%'
+            }
+            else if (flower==2){
+                sunflower.style.right = '10%'
+                sunflower.style.bottom = '10%'
+            }
             const petals = document.createElement("div");
             petals.className = "petals";
             sunflower.appendChild(petals);
@@ -111,39 +147,6 @@ function spawnFlowers() {
             flowersContainer.appendChild(sunflower);
         }
     }
-    function positionFlowers(allCurrFlowers) {
-        const positions = [
-            { left: "12px", top: "12px", altLeft: "-6px", altTop: "-6px" },
-            {
-                right: "12px",
-                bottom: "12px",
-                altRight: "-6px",
-                altBottom: "-6px",
-            },
-            { right: "12px", top: "12px", altRight: "-6px", altTop: "-6px" },
-        ];
 
-        allCurrFlowers.forEach((flower, index) => {
-            if (index >= positions.length) return; // Защита от ошибок, если цветов больше 3
-            const pos = positions[index];
-
-            if (flower.className === "sunflower") {
-                Object.assign(flower.style, {
-                    left: pos.left || "",
-                    top: pos.top || "",
-                    right: pos.right || "",
-                    bottom: pos.bottom || "",
-                });
-            } else {
-                Object.assign(flower.style, {
-                    left: pos.altLeft || "",
-                    top: pos.altTop || "",
-                    right: pos.altRight || "",
-                    bottom: pos.altBottom || "",
-                });
-            }
-        });
-    }
-    positionFlowers(allCurrFlowers);
     fieldCell.appendChild(flowersContainer);
 }
